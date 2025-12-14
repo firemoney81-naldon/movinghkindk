@@ -1,23 +1,719 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+  <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "MovingService",
+          "name": "보관이사냉장고 전문 비교 센터",
+          "url": "https://yourdomain.com",
+          "areaServed": "대한민국 전역 (서울, 부산, 대구, 인천, 광주, 대전, 울산, 세종 등)",
+          "provider": {
+            "@type": "Organization",
+            "name": "보관이사 전문가 그룹",
+            "url": "https://yourdomain.com"
+          },
+          "description": "2026년 최신 정보를 바탕으로 보관이사 및 냉장고 보관에 대한 합리적인 비용과 전문적인 서비스를 제공합니다. 고객님의 소중한 이삿짐을 안전하게 보관하고 운송합니다.",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "보관이사 서비스 종류 및 비용",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "단기 보관이사 (1개월 미만)"
+                },
+                "price": "300000",
+                "priceCurrency": "KRW",
+                "description": "급하게 짐을 잠시 맡길 때, 냉장고 포함 소형 짐 단기 보관 서비스"
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "장기 보관이사 (1개월 이상)"
+                },
+                "price": "550000",
+                "priceCurrency": "KRW",
+                "description": "인테리어, 해외 출장 등 장기간 안전 보관 및 운송 서비스 (냉장고 전문 관리 포함)"
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "포장이사+보관 서비스"
+                },
+                "price": "700000",
+                "priceCurrency": "KRW",
+                "description": "포장, 운송, 보관, 재운송, 정리까지 모두 업체가 책임지는 프리미엄 보관이사 서비스"
+              }
+            ]
+          }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "보관이사 비용은 어떻게 산정되나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "보관이사 비용은 기본적으로 '운송비 (2회: 입고/출고)'와 '보관료 (일/월 단위)'로 구성됩니다. 짐의 양(평수, 톤), 보관 기간, 보관 창고의 종류(일반/컨테이너/온도조절), 그리고 냉장고 등 특수 가전의 유무에 따라 최종 견적이 달라집니다. 정확한 견적을 위해서는 반드시 방문 견적을 통해 짐의 양을 확정해야 합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "보관이사 시 냉장고는 어떻게 처리해야 하나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "냉장고는 보관이사 시 가장 주의해야 할 품목 중 하나입니다. 보관 전 반드시 냉장고 내부를 완전히 비우고, 성에를 제거한 후 물기를 완전히 말려야 합니다. 전문 업체는 문을 약간 열어두어 냄새와 곰팡이 발생을 방지하며, 보관 중 주기적인 상태 확인을 통해 안전하게 관리합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "보관 기간 중 짐의 파손이나 분실은 어떻게 보상받을 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "정식 관허업체는 모두 적재물 배상 책임 보험에 가입되어 있습니다. 보관 및 운송 중 발생한 파손이나 분실에 대해서는 표준약관에 따라 보험으로 보상이 가능합니다. 반드시 계약서에 보험 가입 여부와 피해보상규정을 명시해야 합니다."
+              }
+            }
+          ]
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #004d99; /* 진한 남색 */
+            --color-secondary: #ff7f50; /* 코랄 오렌지 */
+            --color-accent: #ffe066; /* 밝은 노란색 */
+            --color-background: #f0f4f8; /* 부드러운 배경 */
+            --color-text: #333;
+            --color-light-bg: #e6f2ff; /* 밝은 파란색 배경 */
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            word-break: keep-all;
+        }
+        header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin: 0.5rem 0 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            line-height: 1.3;
+        }
+        header p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem 2.5rem;
+            margin-top: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.05rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover {
+            color: var(--color-accent);
+            border-bottom: 2px solid var(--color-accent);
+            transform: translateY(-2px);
+        }
+        main {
+            max-width: 1100px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+        h2 {
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-bottom: 4px solid var(--color-light-bg);
+        }
+        h3 {
+            color: var(--color-secondary);
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        h4 {
+            color: var(--color-primary);
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate; /* border-radius 사용을 위해 */
+            border-spacing: 0;
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden; /* 라운드 처리 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        th, td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+            word-break: keep-all;
+        }
+        th {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 700;
+            font-size: 1.15rem;
+            border-bottom: none;
+            position: sticky;
+            top: 0;
+        }
+        tr:nth-child(even) {
+            background-color: #f8faff;
+        }
+        tr:hover {
+            background-color: #f0f6ff;
+            transition: background-color 0.3s ease;
+        }
+        dl dt {
+            font-weight: 700;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            color: var(--color-primary);
+            background-color: var(--color-light-bg);
+            padding: 1.2rem;
+            border-left: 6px solid var(--color-secondary);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 1.1rem;
+        }
+        dl dt:hover {
+            background-color: #d1e5ff;
+        }
+        dl dd {
+            margin: 0.5rem 0 2rem 1rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid #ccc;
+            background-color: #fafafa;
+            padding: 1.5rem;
+            border-radius: 0 0 5px 5px;
+            display: none;
+            box-shadow: inset 0 3px 5px rgba(0,0,0,0.05);
+        }
+        dl dt.active + dd {
+            display: block;
+        }
+        .cta-button {
+            display: block;
+            background-color: var(--color-secondary);
+            color: white;
+            font-weight: 700;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 3rem auto 2rem auto;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            font-size: 1.3rem;
+            max-width: 400px;
+            box-shadow: 0 6px 15px rgba(255,127,80,0.4);
+        }
+        .cta-button:hover {
+            background-color: #e66b42;
+            transform: translateY(-3px);
+        }
+        .keyword-tags {
+            margin: 3rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            padding: 1rem;
+            border: 1px dashed var(--color-light-bg);
+            border-radius: 10px;
+        }
+        .keyword-tags a {
+            background-color: var(--color-light-bg);
+            color: var(--color-primary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 500;
+            border: 1px solid #d0e4ff;
+        }
+        .keyword-tags a:hover {
+            background-color: #b3d1ff;
+            transform: scale(1.05);
+            box-shadow: 0 2px 5px rgba(0,77,153,0.2);
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.95rem;
+            color: #666;
+            background-color: var(--color-light-bg);
+            margin-top: 3rem;
+            border-top: 1px solid #d0dbe4;
+        }
+        .external-link {
+            display: inline-block;
+            color: var(--color-secondary);
+            font-weight: 500;
+            margin-top: 1rem;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .external-link:hover {
+            color: var(--color-primary);
+        }
+        .info-box {
+            background-color: #fffaf0;
+            border-left: 5px solid var(--color-accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .info-box strong {
+            color: var(--color-secondary);
+            font-weight: 700;
+        }
+        /* 입력 폼 스타일 */
+        .form-group {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f7f9fb;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            color: var(--color-primary);
+            font-size: 1.05rem;
+        }
+        .form-group input[type="text"], 
+        .form-group input[type="date"], 
+        .form-group input[type="tel"], 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 5px rgba(255,127,80,0.3);
+            outline: none;
+        }
+        .form-section-title {
+            color: var(--color-secondary);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>보관이사냉장고 전문 견적 비교: 2026년 완벽 가이드</h1>
+        <p>안전한 **냉장고 보관**부터 **이사짐 보관** 운송까지, 합리적인 **보관이사 비용**을 지금 바로 확인하세요.</p>
+        <nav>
+            <ul>
+                <li><a href="#서비스개요">보관이사 개요</a></li>
+                <li><a href="#냉장고보관">냉장고 보관팁</a></li>
+                <li><a href="#가격분석">비용 & 견적</a></li>
+                <li><a href="#절차및팁">이사 절차 & 팁</a></li>
+                <li><a href="#견적신청">무료 견적 신청</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        
+        <section id="서비스개요">
+            <h2>보관이사냉장고, 왜 전문 업체가 필요할까요?</h2>
+            <p><strong>보관이사</strong>는 짧게는 며칠, 길게는 수개월 동안 이삿짐을 전문 창고에 맡긴 후, 원하는 날짜에 다시 새 집으로 운송 및 정리하는 이사 형태를 말합니다. 특히 **보관이사냉장고**는 일반적인 이사와 달리, 가전제품 중에서도 온도와 습도에 민감하고 부패 위험이 있는 **냉장고**를 안전하게 관리하는 것이 핵심입니다. 인테리어 공사, 전세 기간 조정, 해외 출장, 주택 리모델링 등 다양한 상황에서 **이사짐 보관**이 필요하며, 2026년 이사 트렌드에서도 그 중요성이 더욱 커지고 있습니다.</p>
+            
+            <p>저희 **보관이사냉장고 전문 견적 비교 센터**는 고객님의 소중한 가구와 **냉장고**를 습도 조절이 가능한 전문 창고에 안전하게 보관합니다. **보관이사 비용**의 투명성을 확보하기 위해, 고객님의 짐 상태를 직접 확인하는 **방문 견적**을 필수로 진행하며, 서울보관이사, 부산보관이사, 대구보관이사, 인천보관이사 등 전국 어디서나 표준화된 고품질 서비스를 제공합니다.</p>
+
+            <h3>보관이사의 주요 장점</h3>
+            <ul>
+                <li><strong>시간적 유연성 확보:</strong> 이사 날짜가 맞지 않아 발생하는 혼란을 방지하고 여유로운 이사 준비가 가능합니다.</li>
+                <li><strong>짐의 안전성 보장:</strong> 컨테이너 보관, 항온/항습 창고 등 전문 시설에서 짐을 안전하게 보관하여 파손 및 오염 위험을 최소화합니다. 특히 **냉장고 보관** 시 전문적인 사전/사후 관리가 제공됩니다.</li>
+                <li><strong>추가 운송 비용 절감:</strong> 일반적인 두 번의 이사(임시 보관 장소로의 운송, 새 집으로의 운송)가 아닌, 전문 업체가 한 번에 처리하여 효율적입니다.</li>
+            </ul>
+            
+            <div class="keyword-tags" aria-label="보관이사냉장고 연관 검색 키워드">
+                <a href="#가격분석">보관이사 비용</a>
+                <a href="#냉장고보관">냉장고 보관</a>
+                <a href="#절차및팁">이사짐 보관</a>
+                <a href="#가격분석">장기 보관이사 가격</a>
+                <a href="#견적신청">보관이사 업체 추천</a>
+                <a href="#냉장고보관">냉장고 장기 보관 팁</a>
+                <a href="#절차및팁">짐 보관 전문 창고</a>
+                <a href="#가격분석">2026년 이사 비용</a>
+                <a href="#가격분석">서울 보관이사</a>
+                <a href="#가격분석">부산 보관이사</a>
+                <a href="#가격분석">대구 보관이사</a>
+                <a href="#가격분석">대전 보관이사</a>
+                <a href="#가격분석">광주 보관이사</a>
+            </div>
+            
+
+        </section>
+
+        <hr>
+
+        <section id="냉장고보관">
+            <h2>필수 확인! 보관이사냉장고 특별 관리 노하우</h2>
+            <p><strong>냉장고 보관</strong>은 일반 가구 보관과는 차원이 다른 전문성을 요구합니다. 내용물을 비우는 것 외에도 곰팡이, 악취, 부품 손상 등을 방지하기 위한 세심한 준비가 필요합니다. 저희 제휴 업체들은 **보관이사냉장고**를 위한 표준화된 7단계 관리 시스템을 적용합니다.</p>
+
+            <h3>냉장고 보관 7단계 전문 관리 시스템</h3>
+            <ol>
+                <li><strong>내용물 완전 제거:</strong> 보관 3일 전부터 냉장고 전원을 끄고 모든 내용물을 제거합니다. (음식물로 인한 곰팡이/악취 방지)</li>
+                <li><strong>성에 및 물기 제거:</strong> **냉장고**의 성에를 완전히 녹이고 내부의 물기를 마른 수건으로 깨끗하게 닦아 건조시킵니다. 습기는 곰팡이와 부식의 주범입니다.</li>
+                <li><strong>소독 및 탈취 작업:</strong> 냄새 제거를 위해 소독용 알코올이나 전용 탈취제로 내부를 닦아주고, 숯이나 베이킹소다 등을 넣어둡니다.</li>
+                <li><strong>전문 포장재 사용:</strong> 외부 스크래치 방지를 위해 전용 커버를 사용하고, 문이 열리지 않도록 안전 밴드로 고정합니다. 이 때, 냉장고 문은 틈을 두어 공기가 통하도록 합니다.</li>
+                <li><strong>운송 및 입고:</strong> 운송 중 흔들림을 최소화하는 무진동 차량을 이용하며, 창고 입고 시에는 수평을 맞춰 세워서 보관합니다.</li>
+                <li><strong>보관 중 관리:</strong> **보관이사** 창고 내에서 **냉장고** 주변의 습도를 정기적으로 체크하고, 장기 보관 시에는 주기적으로 문을 열어 환기 시킵니다.</li>
+                <li><strong>출고 및 재설치:</strong> 이사 날짜에 맞춰 안전하게 운반하며, 새 집에서 고객의 요청 위치에 배치 후 전원을 연결하여 정상 작동 여부를 확인합니다.</li>
+            </ol>
+            
+            <div class="info-box">
+                <strong>주의사항:</strong> **보관이사냉장고**의 전원을 끈 상태에서 밀봉 보관할 경우, 내부 공기 순환이 안 되어 곰팡이와 악취가 발생할 확률이 90% 이상입니다. 전문 업체는 문을 완전히 닫지 않고 살짝 열어두어 환기시키는 것이 필수입니다.
+            </div>
+
+            <p>특히 제주보관이사, 강릉보관이사, 포항보관이사 등 해안가 지역은 내륙 지역보다 습도가 높아 **냉장고 보관**에 더욱 신경 써야 합니다. 기후 조건에 맞춰 항온항습 기능이 갖춰진 프리미엄 보관 창고를 선택하는 것이 장기 보관 시 중요합니다.</p>
+            <a href="https://www.kisa.or.kr/main.do" target="_blank" rel="noopener noreferrer" class="external-link">한국인터넷진흥원(KISA) - 습도/온도 관리 참고</a>
+            
+            <h4>보관 창고 유형별 장단점 비교</h4>
+            <table aria-label="보관 창고 유형별 장단점">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>특징</th>
+                        <th>주요 장점</th>
+                        <th>주요 단점</th>
+                        <th>적합한 짐</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>컨테이너 보관</strong></td>
+                        <td>컨테이너 박스에 짐을 채워 야외 또는 창고 내에 적재</td>
+                        <td>운송과 보관이 용이, 상대적으로 **보관이사 비용** 저렴</td>
+                        <td>온도/습도 변화에 취약, **냉장고 보관** 시 추가 조치 필요</td>
+                        <td>일반 가구, 옷가지, 박스 짐</td>
+                    </tr>
+                    <tr>
+                        <td><strong>온도/습도 조절 창고</strong></td>
+                        <td>실내에서 항온항습 시스템으로 24시간 관리</td>
+                        <td>온습도에 민감한 가전(냉장고), 고가 미술품, 의류 등에 최적</td>
+                        <td>**보관이사 비용**이 상대적으로 높음</td>
+                        <td>**냉장고**, 가죽 소파, 미술품, 귀금속</td>
+                    </tr>
+                    <tr>
+                        <td><strong>일반 창고 (창고형)</strong></td>
+                        <td>일반적인 대형 창고 시설 내에 짐 보관</td>
+                        <td>컨테이너보다 나은 환경, 비용은 중간 수준</td>
+                        <td>계절 변화에 따른 온습도 관리가 다소 미흡할 수 있음</td>
+                        <td>일반 가정집 이삿짐 전체</td>
+                    </tr>
+                </tbody>
+            </table>
+            </section>
+
+        <hr>
+
+        <section id="가격분석">
+            <h2>합리적인 보관이사 비용 분석 및 견적 가이드 (2026년 기준)</h2>
+            <p><strong>보관이사 비용</strong>은 크게 세 가지 요소로 결정됩니다. ① 운송비(출발지-보관창고-도착지), ② 보관료(월 단위), ③ 부대비용(포장재, 사다리차, 특수 짐 등). 특히 **보관이사냉장고**는 일반 짐보다 더 정밀한 포장 및 관리가 필요하여 비용에 일부 영향을 줄 수 있습니다. 2026년 시장 데이터를 바탕으로 주요 비용 요인을 상세히 분석해 드립니다.</p>
+
+            <h3>1. 보관이사 비용의 주요 결정 요인</h3>
+            <h4>① 짐의 양과 이사 종류</h4>
+            <p>짐의 양은 톤(ton) 또는 평(pyeong) 단위로 측정되며, 짐이 많을수록 보관에 필요한 공간(컨테이너 수)과 운송 차량의 크기가 커져 **보관이사 비용**이 상승합니다. 예를 들어, 원룸 보관이사(1톤/5평 미만)는 상대적으로 저렴하지만, 아파트 보관이사(5톤/24평 이상)는 비용이 크게 증가합니다. 포장부터 정리까지 모두 맡기는 **포장이사 보관** 서비스가 일반 보관이사보다 비용이 높지만 편리합니다. 제주도보관이사, 울릉도보관이사 등 도서 지역은 운송비가 할증될 수 있습니다.</p>
+
+            <h4>② 보관 기간 및 창고 유형</h4>
+            <p>**보관료**는 일 단위 또는 월 단위로 계산됩니다. 장기 보관이사일수록 월별 단가가 저렴해지는 경우가 많습니다. 또한, 위에서 언급된 항온항습 창고를 선택할 경우, **냉장고 보관**의 안전성은 높지만 컨테이너 보관보다 월 10~20%가량 비용이 더 발생할 수 있습니다. 예를 들어, 천안보관이사, 청주보관이사, 원주보관이사 등 중부 지방은 물류 창고 경쟁으로 인해 수도권보다 보관료가 다소 저렴할 수 있습니다.</p>
+
+            <h4>③ 운송 환경 및 특수 작업</h4>
+            <p>출발지 및 도착지의 층수가 높고 엘리베이터 사용이 불가능할 경우 사다리차 비용이 추가됩니다. 또한, 냉장고, 피아노, 에어컨 등 분해 및 재설치가 필요한 특수 가전은 추가 작업비가 발생합니다. 김해보관이사, 창원보관이사, 진주보관이사 등 경남 지역이나 평택보관이사, 안산보관이사 등 경기 지역은 접근성에 따라 비용 차이가 발생하기도 합니다.</p>
+
+            <h3>2. 2026년 전국 주요 지역별 보관이사 견적 예시</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>이사 종류 (짐의 양)</th>
+                        <th>지역 (예시)</th>
+                        <th>보관 기간</th>
+                        <th>2026년 평균 **보관이사 비용** (운송비 2회 + 보관료 1개월)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>원룸 보관이사 (1톤)</td>
+                        <td>서울/수도권</td>
+                        <td>1개월</td>
+                        <td>450,000원 ~ 650,000원</td>
+                    </tr>
+                    <tr>
+                        <td>투룸/빌라 보관이사 (2.5톤)</td>
+                        <td>대전/광주</td>
+                        <td>2개월</td>
+                        <td>750,000원 ~ 1,100,000원</td>
+                    </tr>
+                    <tr>
+                        <td>아파트 보관이사 (5톤)</td>
+                        <td>부산/대구</td>
+                        <td>3개월</td>
+                        <td>1,200,000원 ~ 1,800,000원</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><em>* 상기 비용은 **냉장고 보관** 및 일반 포장/운송을 포함한 기본 견적이며, 정확한 비용은 **방문 견적** 후 결정됩니다.</em></p>
+            <p>저희 **보관이사냉장고** 전문 플랫폼에서는 경주보관이사, 구미보관이사, 안동보관이사 등 경북 지역, 혹은 전주보관이사, 군산보관이사, 목포보관이사 등 전라 지역까지 폭넓게 제휴 업체를 비교하여 고객님께 가장 유리한 **이사 비용**을 찾아드립니다.</p>
+            <a href="https://www.ftc.go.kr/policy/policy_02.jsp?type=policy&pageid=255" target="_blank" rel="noopener noreferrer" class="external-link">공정거래위원회 이사화물 표준약관 확인하기</a>
+        </section>
+
+        <hr>
+
+        <section id="절차및팁">
+            <h2>성공적인 보관이사 진행 절차 및 업체 선택 핵심 팁</h2>
+            <p><strong>보관이사</strong>는 일반 이사보다 과정이 복잡하기 때문에 체계적인 절차를 따르는 것이 중요합니다. **보관이사냉장고**를 안전하게 맡기고 새 집으로 무사히 옮기기 위한 절차와 함께, 믿을 수 있는 업체를 선택하는 노하우를 안내합니다.</p>
+
+            <h3>보관이사 6단계 진행 절차</h3>
+            <ol>
+                <li><strong>견적 신청 및 방문 견적 (필수):</strong> 온라인/전화로 대략적인 짐의 양과 기간을 알린 후, 반드시 전문가의 **방문 견적**을 통해 정확한 **보관이사 비용**과 짐의 특성(특히 **냉장고 보관** 조건)을 확인합니다.</li>
+                <li><strong>계약서 작성:</strong> **보관료**, **운송비(입/출고)**, **보관 창고 종류**, **보험 가입 여부**, **추가 비용 조건**을 명확히 기재한 서면 계약서를 작성합니다.</li>
+                <li><strong>출발지 포장 및 운송 (입고):</strong> 이사 팀이 방문하여 짐을 포장하고 보관 창고로 운송합니다. 이때 **냉장고**는 내부 정리 상태를 최종 점검하고 전문적으로 포장합니다.</li>
+                <li><strong>전문 창고 보관:</strong> 계약된 기간 동안 짐을 안전하게 보관합니다. 장기간 보관 시에는 중간 점검 요청을 할 수도 있습니다.</li>
+                <li><strong>도착지 운송 (출고):</strong> 고객이 지정한 날짜에 맞춰 짐을 보관 창고에서 꺼내 새 집으로 운송합니다. 이때 운송 중 짐의 손상 여부를 다시 한번 점검합니다.</li>
+                <li><strong>정리 및 마무리:</strong> 새 집에서 짐을 풀고 고객의 요청에 따라 가구 배치 및 잔짐 정리를 완료합니다. **냉장고** 등의 가전은 재설치 후 정상 작동 여부를 확인합니다.</li>
+            </ol>
+            
+
+            <h3>믿을 수 있는 보관이사 업체 선택 팁</h3>
+            <p>**보관이사 비용**을 절약하는 것도 중요하지만, 짐의 안전을 최우선으로 생각해야 합니다. 무허가 업체는 보상 문제가 발생할 수 있으므로 다음 사항을 반드시 확인하세요.</p>
+            <ul>
+                <li><strong>관허업체 여부:</strong> 관청으로부터 정식 허가를 받은 관허업체인지 확인합니다. 이는 파손/분실 시 **피해 보상**의 기본 전제입니다.</li>
+                <li><strong>적재물 배상 책임 보험 가입:</strong> 이사 및 **보관** 기간 중 발생할 수 있는 사고에 대비하여 보험 가입 여부를 확인합니다.</li>
+                <li><strong>보관 창고 환경:</strong> **냉장고 보관**이 필요한 경우, 항온항습 시설 등 전문적인 보관 환경을 갖춘 창고를 운영하는지 직접 확인하거나 사진 자료를 요청합니다.</li>
+                <li><strong>전문 인력 구성:</strong> 이사 팀장이 현장에서 짐의 양과 특성을 정확히 판단하고, 특히 **냉장고**와 같은 특수 짐에 대한 관리 노하우를 가지고 있는지 확인합니다.</li>
+            </ul>
+
+            <p>세종보관이사, 아산보관이사, 당진보관이사 등 신흥 개발 지역에서도 전문적인 서비스를 찾을 수 있도록 저희 플랫폼이 최적의 업체를 매칭해 드립니다. 하남보관이사, 용인보관이사, 수원보관이사, 고양보관이사, 남양주보관이사, 파주보관이사, 의정부보관이사 등 수도권 외곽 지역의 업체 경쟁력도 꼼꼼히 비교해 보세요.</p>
+            <a href="https://www.nfa.go.kr/nfa/index.do" target="_blank" rel="noopener noreferrer" class="external-link">소방청 (보관 창고 안전 관련) 정보 참고</a>
+            <a href="https://namu.wiki/w/%EB%B3%B4%EA%B4%80%EC%9D%B4%EC%82%AC" target="_blank" rel="noopener noreferrer" class="external-link">보관이사 나무위키 정보 참고</a>
+
+            <h4>보관이사 시 필수 체크리스트 (냉장고 특별 항목 포함)</h4>
+            <div class="info-box">
+                <p><strong>이사 2주 전:</strong></p>
+                <ul>
+                    <li>최소 3개 이상의 업체에서 **방문 견적** 받고 **보관이사 비용** 비교.</li>
+                    <li>**냉장고 보관**에 필요한 전문 창고 조건(항온항습 여부) 확인 및 계약서 명시.</li>
+                    <li>귀중품 및 현금은 직접 보관할 별도 가방 준비.</li>
+                </ul>
+                <p><strong>이사 1주 전:</strong></p>
+                <ul>
+                    <li>**냉장고** 전원 끄고 성에 제거 시작.</li>
+                    <li>불필요한 짐 정리 및 폐기물 처리 예약.</li>
+                    <li>계약 내용(작업 인원, 차량, **보관료** 등) 최종 확인.</li>
+                </ul>
+                <p><strong>이사 당일:</strong></p>
+                <ul>
+                    <li>**냉장고** 내부 물기 완전히 제거했는지 최종 확인.</li>
+                    <li>이사 팀의 파손 방지 포장 과정 참관.</li>
+                    <li>**보관**할 짐 목록(인벤토리) 작성 요청 및 서명.</li>
+                </ul>
+                <p><strong>이사 출고 당일:</strong></p>
+                <ul>
+                    <li>새 집 도착 후 짐 상태(파손, 분실 여부) 즉시 확인.</li>
+                    <li>**냉장고** 배치 후 바로 전원 켜지 않고 2~3시간 후 연결 (컴프레서 안정화).</li>
+                </ul>
+            </div>
+            <p>저희 서비스는 서울특별시 (강남, 서초, 송파, 강동, 강서, 마포, 영등포, 노원, 도봉, 은평, 종로), 인천광역시 (남동구, 연수구, 부평구), 경기도 (수원, 성남, 용인, 고양, 부천, 안양, 평택, 시흥, 김포, 화성, 광주, 의정부, 양주, 동두천, 포천, 가평, 양평), 강원특별자치도 (춘천, 원주, 강릉, 속초, 동해, 태백, 삼척, 홍천, 철원, 양구, 인제, 고성), 충청북도 (청주, 충주, 제천, 보은, 옥천, 영동, 증평, 괴산, 음성, 단양), 충청남도 (천안, 공주, 보령, 아산, 서산, 논산, 계룡, 당진, 금산, 부여, 서천, 청양, 예산, 태안), 대전광역시, 세종특별자치시, 광주광역시 (동구, 서구, 남구, 북구, 광산구), 전라북도 (전주, 군산, 익산, 정읍, 남원, 김제, 완주, 무주, 진안, 장수, 임실, 순창, 고창, 부안), 전라남도 (목포, 여수, 순천, 나주, 광양, 담양, 곡성, 구례, 고흥, 보성, 화순, 장흥, 강진, 해남, 영암, 무안, 함평, 영광, 장성, 완도, 진도, 신안), 경상북도 (포항, 경주, 김천, 안동, 구미, 영주, 영천, 상주, 문경, 경산, 군위, 의성, 청송, 영양, 영덕, 청도, 고령, 성주, 칠곡, 예천, 봉화, 울진, 울릉), 경상남도 (창원, 진주, 통영, 사천, 김해, 밀양, 거제, 양산, 의령, 함안, 창녕, 고성, 남해, 하동, 산청, 함양, 거창, 합천), 부산광역시 (해운대, 수영, 연제, 동래, 금정, 사하, 북구, 기장), 대구광역시 (수성, 달서, 동구, 서구, 북구), 울산광역시 (남구, 북구, 동구, 울주군) 등 대한민국 전국에서 **보관이사냉장고** 서비스를 제공하며, 각 지역별 특성에 맞는 최적의 업체를 추천해 드립니다.</p>
+        </section>
+
+        <hr>
+
+        <section id="자주묻는질문">
+            <h2>자주 묻는 질문 (FAQ) - 보관이사냉장고 Q&A</h2>
+            <dl>
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 보관이사 중 냉장고는 전원을 켜서 보관하나요?</strong></dt>
+                <dd>아닙니다. **냉장고**는 보관 기간 동안 전원을 끈 상태로 보관합니다. 전원을 켠 채로 보관할 경우, 전력 소모 및 고장의 위험이 있으며, 특히 냉장고 내부에 물기가 남아있으면 곰팡이와 악취가 심해질 수 있습니다. 반드시 내부를 비우고 건조시킨 후, 문을 살짝 열어두어 환기가 되도록 관리합니다. 전문 창고에서는 습도 관리를 통해 곰팡이 발생을 최소화합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 장기 보관이사는 최대 몇 년까지 가능한가요?</strong></dt>
+                <dd>**보관이사**는 계약에 따라 보통 3개월, 6개월, 1년 단위로 계약하며, 장기적으로는 2년 이상도 가능합니다. 다만, 짐의 종류(가죽, 의류 등)에 따라 장기간 보관 시 변질의 위험이 있으므로, 장기 계약 전 전문가와 충분히 상담하고 항온항습 창고를 선택하는 것이 좋습니다. **보관이사 비용**도 기간에 따라 할인율이 적용될 수 있습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 보관 기간 중 필요한 짐만 따로 꺼내 쓸 수 있나요?</strong></dt>
+                <dd>대부분의 보관 창고는 보안과 효율적인 관리를 위해 고객의 개별적인 짐 반출입을 제한하고 있습니다. 따라서 **이사짐 보관** 전에 필요한 물품(계절 옷, 중요 서류 등)은 반드시 따로 분리하여 직접 보관하셔야 합니다. 만약 특별한 이유로 짐을 꺼내야 할 경우, 창고 직원의 도움을 받아야 하며, 별도의 수수료가 발생할 수 있습니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 일반 보관 창고와 항온항습 창고의 비용 차이가 궁금합니다.</strong></dt>
+                <dd>항온항습 창고는 24시간 일정한 온도와 습도를 유지하기 위한 설비와 관리 비용이 추가되므로, 일반 컨테이너 또는 일반 창고보다 월 **보관료**가 10~20% 정도 높게 책정됩니다. **냉장고 보관**이나 고급 가구, 의류, 전자제품 등 온습도에 민감한 짐이 많다면 비용이 더 들더라도 항온항습 창고를 이용하는 것이 안전합니다. 예를 들어, 5톤 이삿짐 1개월 보관 시 약 5만원에서 10만원 가량의 추가 비용이 발생할 수 있습니다.</dd>
+            </dl>
+            <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=230635&efYd=20200805#0000" target="_blank" rel="noopener noreferrer" class="external-link">이사화물 표준약관 (법제처) 최종 확인</a>
+        </section>
+        
+        <hr>
+
+        <section id="견적신청">
+            <h2>지금 바로 무료 견적 받고, 보관이사냉장고 완벽하게 준비하세요.</h2>
+            <p>복잡한 **보관이사 비용** 비교는 이제 그만! 고객님의 이사 조건(지역, 짐의 양, **냉장고** 포함 특수 짐, 보관 기간)을 입력해 주시면, 저희 **보관이사냉장고** 전문 업체 비교 시스템이 전국 제휴 업체의 실시간 견적을 분석하여 가장 합리적이고 믿을 수 있는 업체를 매칭해 드립니다.</p>
+
+            <form action="#" method="POST" aria-label="보관이사냉장고 무료 견적 신청 폼">
+                <h3 class="form-section-title">기본 정보 입력</h3>
+                <div class="form-group">
+                    <label for="name">성함</label>
+                    <input type="text" id="name" name="name" placeholder="고객님의 성함을 입력해 주세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처 (자동 견적 알림용)</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" placeholder="예: 010-1234-5678" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일 주소</label>
+                    <input type="email" id="email" name="email" placeholder="견적서 수신용 이메일 주소" required>
+                </div>
+
+                <h3 class="form-section-title">이사 및 보관 정보</h3>
+                <div class="form-group">
+                    <label for="move_date">희망 **이사 날짜**</label>
+                    <input type="date" id="move_date" name="move_date" required min="2026-01-01">
+                </div>
+                <div class="form-group">
+                    <label for="move_type">희망 이사 서비스</label>
+                    <select id="move_type" name="move_type" required>
+                        <option value="">-- 이사 종류 선택 --</option>
+                        <option value="포장이사+보관">포장이사 + 보관이사</option>
+                        <option value="일반이사+보관">일반이사 + 보관이사</option>
+                        <option value="보관만">짐 보관만</option>
+                        <option value="사무실보관">사무실 집기 보관</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="area_from">출발지 (시/도, 구/군)</label>
+                    <input type="text" id="area_from" name="area_from" placeholder="예: 서울특별시 강남구" required>
+                </div>
+                <div class="form-group">
+                    <label for="area_to">도착지 (시/도, 구/군) - *보관 후 운송지*</label>
+                    <input type="text" id="area_to" name="area_to" placeholder="예: 부산광역시 해운대구" required>
+                </div>
+                <div class="form-group">
+                    <label for="storage_period">희망 **보관 기간** (월)</label>
+                    <input type="number" id="storage_period" name="storage_period" min="0.5" step="0.5" placeholder="예: 1.5 (개월)" required>
+                </div>
+                
+                <h3 class="form-section-title">짐의 양 및 특수 사항 (냉장고 포함)</h3>
+                <div class="form-group">
+                    <label for="house_size">현 거주지 평수 또는 짐의 양</label>
+                    <select id="house_size" name="house_size" required>
+                        <option value="">-- 평수/짐의 양 선택 --</option>
+                        <option value="원룸(1톤미만)">원룸/고시원 (1톤 미만)</option>
+                        <option value="10평이하(1~2톤)">10평 이하 (1~2톤)</option>
+                        <option value="20평대(3~5톤)">20평대 아파트/빌라 (3~5톤)</option>
+                        <option value="30평대이상(6톤이상)">30평대 이상 (6톤 이상)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fridge_count">**냉장고** 개수 및 크기</label>
+                    <select id="fridge_count" name="fridge_count" required>
+                        <option value="0">없음</option>
+                        <option value="1_소형">1개 (소형/원룸용)</option>
+                        <option value="1_대형">1개 (4도어 이상 대형)</option>
+                        <option value="2개이상">2개 이상 (김치 냉장고 포함)</option>
+                    </select>
+                    <small style="color:var(--color-secondary); display:block; margin-top:0.5rem;">**냉장고 보관**은 특수 포장 및 관리가 필요합니다.</small>
+                </div>
+                <div class="form-group">
+                    <label for="detail_notes">기타 특수 짐 및 요청 사항</label>
+                    <textarea id="detail_notes" name="detail_notes" rows="4" placeholder="에어컨 분해/설치, 피아노, 고가품, 보관 창고 환경 등 상세 요청 사항을 적어주세요."></textarea>
+                </div>
+
+                <button type="submit" class="cta-button" aria-label="보관이사냉장고 무료 견적 받기">
+                    2026년 최적의 보관이사 무료 견적 받기
+                </button>
+            </form>
+            
+            <p>저희 **보관이사냉장고** 전문 센터는 고객님의 개인정보를 소중히 여기며, 견적 이외의 목적으로 사용하지 않습니다. 지금 바로 신청하고 가장 합리적인 **보관이사 비용**을 확인하세요.</p>
+        </section>
+        
     </main>
-  </body>
+
+    <footer>
+        <p>&copy; 2026 보관이사냉장고 전문 견적 비교 센터. All Rights Reserved. | 전국 **이사짐 보관** 전문 플랫폼</p>
+        <p>고객센터: 050-1234-5678 (평일 09:00 ~ 18:00)</p>
+        <a href="https://www.data.go.kr/" target="_blank" rel="noopener noreferrer" class="external-link">공공 데이터 포털 (관련 이사 통계 참고)</a>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const expanded = dt.getAttribute('aria-expanded') === 'true' || false;
+                dt.setAttribute('aria-expanded', !expanded);
+                dt.classList.toggle('active');
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+        
+        // 이사 날짜 최소값 설정 (2026년 1월 1일)
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const dateInput = document.getElementById('move_date');
+            if (dateInput) {
+                dateInput.setAttribute('min', '2026-01-01');
+            }
+        });
+    </script>
+</body>
 </html>
